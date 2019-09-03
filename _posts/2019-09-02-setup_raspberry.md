@@ -76,3 +76,6 @@ sudo pip3 install tensorflow
 ```
 
 Download [model](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md), ssdlite_mobilenet_v2_coco is a light-weight one.
+
+## Have Fun
+[camera guide](https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md)
