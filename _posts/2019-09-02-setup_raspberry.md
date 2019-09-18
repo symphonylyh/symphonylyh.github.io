@@ -45,7 +45,7 @@ TODO: sshfs, ssh-keygen, etc
 
 ### Virtual Environment
 ```sh
-python3 -m venv iot
+python3 -m venv iot # one-time, create venv
 source iot/bin/activate
 deactivate
 ```
@@ -69,11 +69,35 @@ sudo apt install libatlas3-base libsz2 libharfbuzz0b libtiff5 libjasper1 libilmb
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
 sudo pip3 install opencv-contrib-python
-
-# TensorFlow
-sudo apt install libatlas-base-dev
-sudo pip3 install tensorflow
 ```
+
+### Install TensorFlow
+
+To run object detection job on a RPi we need to install TensorFlow object detection API, which is a lot of pain.
+
+Follow [tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi) and [TensorFlow GitHub installation doc](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md).
+
+#### Step 1: Update RPi system
+```sh
+sudo apt-get update
+sudo apt-get dist-upgrade
+```
+
+#### Step 2: TensorFlow
+TensorFlow has officially extended its support to Raspberry Pi recently (the TensorFlow-lite support is also on the way!), and there’s a prebuilt version for Raspbian.
+
+```sh
+sudo pip3 install tensorflow
+
+# Dependencies
+sudo apt install libatlas-base-dev
+sudo apt-get install protobuf-compiler # Google protocol buffer
+[sudo apt-get install python-tk] # optional
+sudo pip3 install pillow lxml matplotlib cython [jupyter] # if error, try install separately
+```
+
+Note that in the past, Google Protocol Buffer is very hard to install (directly compile from source on RPi takes hours, and cross-compile on laptop & copy also seems non-trivial). But, now there is a pre-compiled version available via `sudo apt-get install protobuf-compiler`
+
 
 Download [model](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md), ssdlite_mobilenet_v2_coco is a light-weight one.
 
